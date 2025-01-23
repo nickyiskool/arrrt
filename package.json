@@ -5,8 +5,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "migrate": "sequelize db:migrate",
-    "seedUsers": "sequelize db:seed 20250120205123-seed-users.js",
-    "seedPosts": "sequelize db:seed 20250120203703-seed-posts.js",
+    "seedUsers": "sequelize db:seed --seed 20250120205123-seed-users.js",
+    "seedPosts": "sequelize db:seed --seed 20250120203703-seed-posts.js",
     "start": "node server.js",
     "dev": "nodemon server.js"
   },
