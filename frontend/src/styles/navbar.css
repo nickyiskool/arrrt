@@ -1,0 +1,170 @@
+/* NavBar.css */
+
+/* Basic navbar styling */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #343a40; /* Dark background */
+  padding: 10px 20px;
+  color: white;
+  position: relative; /* For positioning modals */
+}
+
+/* Navbar left section */
+.navbar-left .nav-button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1rem;
+  margin-right: 15px;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.navbar-left .nav-button:hover {
+  color: #adb5bd;
+}
+
+/* Navbar right section */
+.navbar-right .nav-button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1rem;
+  margin-left: 15px;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.navbar-right .nav-button:hover {
+  color: #adb5bd;
+}
+
+/* Demo button specific styling */
+.navbar-right .demo-button {
+  background-color: #17a2b8; /* Teal background */
+  color: white;
+  padding: 5px 10px;
+  border-radius: 4px;
+}
+
+.navbar-right .demo-button:hover {
+  background-color: #138496;
+}
+
+/* Modal styling */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensure it's on top */
+}
+
+.modal-content {
+  background-color: white;
+  padding: 20px 30px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 500px;
+  position: relative;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+/* Close button styling */
+.close-button {
+  background-color: #dc3545; /* Red background */
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.close-button:hover {
+  background-color: #c82333;
+}
+
+/* Form inputs within modals */
+.modal-content form {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-content form input,
+.modal-content form textarea {
+  margin-bottom: 10px;
+  padding: 8px 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.modal-content form button {
+  padding: 8px 10px;
+  background-color: #007bff; /* Blue background */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  align-self: flex-end;
+  transition: background-color 0.3s ease;
+}
+
+.modal-content form button:hover {
+  background-color: #0056b3;
+}
+
+/* Error message styling within modals */
+.error-message {
+  color: #dc3545;
+  margin-bottom: 10px;
+}
+
+/* New Post button specific styling */
+.navbar-right .nav-button.new-post-button {
+  background-color: #28a745; /* Green background */
+  color: white;
+  padding: 5px 10px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.navbar-right .nav-button.new-post-button:hover {
+  background-color: #218838;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .navbar {
+      flex-direction: column;
+      align-items: flex-start;
+  }
+
+  .navbar-left, .navbar-right {
+      width: 100%;
+      display: flex;
+      justify-content: flex-start;
+      margin-bottom: 10px;
+  }
+
+  .navbar-right .nav-button {
+      margin-left: 10px;
+      margin-right: 10px;
+  }
+
+  .modal-content {
+      width: 95%;
+      padding: 15px 20px;
+  }
+}

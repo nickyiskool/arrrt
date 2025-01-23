@@ -1,0 +1,51 @@
+.profile-page {
+    text-align: center;
+    margin: 20px;
+}
+
+.profile-page h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.profile-page p {
+    font-size: 1.2rem;
+    margin: 0.5rem 0;
+}
+
+.post-list {
+    margin-top: 20px;
+}
+
+.post-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+    justify-items: center;
+}
+
+.post-item {
+    position: relative;
+    width: 100%;
+}
+
+.post-image {
+    width: 100%;
+    border-radius: 5px;
+}
+
+.post-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    padding: 10px;
+    font-size: 0.9rem;
+    display: none;
+}
+
+.post-item:hover .post-overlay {
+    display: block;
+}

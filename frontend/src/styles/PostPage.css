@@ -1,0 +1,386 @@
+/* frontend/styles/PostPage.css */
+
+/* Overall Page Container */
+.postPage {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center the content horizontally */
+    margin: 20px;
+    max-width: 800px;
+    width: 100%;
+    padding: 0 15px;
+    box-sizing: border-box;
+}
+
+/* Wrapper for the post image */
+.postImageWrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center; /* Center the image */
+    margin-bottom: 20px;
+    position: relative; /* To contain any absolute positioned elements if needed */
+}
+
+/* Styling for the post image */
+.postPageImage {
+    width: 100%; /* Full width */
+    max-width: 600px; /* Maximum width */
+    height: auto;
+    object-fit: cover; /* Maintain aspect ratio */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    border-radius: 8px; /* To match post list */
+}
+
+/* Post details container */
+.postDetails {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Align text to left */
+    margin-bottom: 30px;
+}
+
+/* Title Section */
+.titleSection {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.postTitle {
+    font-size: 2rem;
+    margin-right: 10px;
+    text-align: left;
+}
+
+.editButton {
+    background: none;
+    border: none;
+    color: #007bff;
+    cursor: pointer;
+    font-size: 1rem;
+    padding: 0;
+}
+
+.editButton:hover {
+    text-decoration: underline;
+}
+
+/* Edit Title Input */
+.editTitleInput {
+    font-size: 2rem;
+    padding: 5px;
+    width: 100%;
+    max-width: 600px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 10px;
+    box-sizing: border-box;
+}
+
+/* Description Section */
+.descriptionSection {
+    width: 100%;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.description {
+    flex: 1;
+    font-size: 1.2rem;
+    line-height: 1.5;
+    text-align: left;
+    margin-right: 10px;
+}
+
+.editDescriptionTextarea {
+    flex: 1;
+    font-size: 1.2rem;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+    box-sizing: border-box;
+    margin-right: 10px;
+}
+
+/* Post Author and Date */
+.postAuthor {
+    font-size: 1.5rem;
+    color: #555;
+    margin-bottom: 5px;
+    text-align: left;
+}
+
+.username {
+    font-size: 1rem;
+    color: #888;
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.description {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    line-height: 1.5;
+    text-align: left;
+}
+
+.date {
+    font-size: 0.9rem;
+    color: #aaa;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+/* Post Edit Controls */
+.postEditControls {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.savePostButton,
+.cancelPostButton {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.savePostButton {
+    background-color: #28a745;
+    color: white;
+}
+
+.savePostButton:hover {
+    background-color: #218838;
+}
+
+.savePostButton:disabled {
+    background-color: #94d3a2;
+    cursor: not-allowed;
+}
+
+.cancelPostButton {
+    background-color: #dc3545;
+    color: white;
+}
+
+.cancelPostButton:hover {
+    background-color: #c82333;
+}
+
+/* Comments section container */
+.commentsSection {
+    width: 100%;
+    margin-top: 2rem;
+}
+
+/* Individual comment styling */
+.comment {
+    width: 100%;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    border-bottom: 1px solid #ccc;
+    position: relative; /* For positioning comment controls */
+    background-color: #f9f9f9; /* Light background for comments */
+    border-radius: 4px;
+    box-sizing: border-box; /* Include padding and border in width */
+}
+
+.commentAuthor {
+    font-weight: bold;
+    margin-bottom: 0.3rem;
+}
+
+.commentContent {
+    margin: 0.5rem 0;
+    white-space: pre-wrap; /* Preserve line breaks */
+}
+
+/* Comment controls (Edit/Delete buttons) */
+.commentControls {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex; /* Ensure buttons are displayed side by side */
+    gap: 0.5rem;   /* Space between buttons */
+}
+
+.commentControls button {
+    background: none;
+    border: none;
+    color: #007bff;
+    cursor: pointer;
+    font-size: 0.9rem;
+    padding: 0;
+}
+
+.commentControls button:hover {
+    text-decoration: underline;
+}
+
+/* Edit comment container */
+.editComment {
+    width: 100%;
+    margin-top: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.editCommentTextarea {
+    width: 100%;
+    height: 80px;
+    margin-bottom: 0.5rem;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+    box-sizing: border-box;
+}
+
+.editButtons {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.saveButton {
+    padding: 0.4rem 0.8rem;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.saveButton:hover {
+    background-color: #218838;
+}
+
+.cancelButton {
+    padding: 0.4rem 0.8rem;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.cancelButton:hover {
+    background-color: #c82333;
+}
+
+/* New comment form */
+.addComment {
+    margin-top: 2rem;
+    width: 100%;
+    background-color: #f1f1f1; /* Light background for the form */
+    padding: 1rem;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+.addComment form {
+    display: flex;
+    flex-direction: column;
+}
+
+.newCommentTextarea {
+    width: 100%;
+    height: 100px;
+    margin-bottom: 0.5rem;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+    box-sizing: border-box;
+}
+
+.addComment button {
+    align-self: flex-end;
+    padding: 0.5rem 1rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.addComment button:hover {
+    background-color: #0056b3;
+}
+
+/* Error message styling */
+.error {
+    color: #dc3545;
+    margin-top: 0.5rem;
+    text-align: center;
+}
+
+/* Optional: Hover effect for comments */
+.comment:hover {
+    background-color: #e9ecef;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+    .postPage {
+        margin: 10px;
+    }
+
+    .postPageImage {
+        max-width: 100%;
+    }
+
+    .postTitle {
+        font-size: 1.8rem;
+    }
+
+    .postAuthor {
+        font-size: 1.3rem;
+    }
+
+    .description {
+        font-size: 1.1rem;
+    }
+
+    .date {
+        font-size: 0.8rem;
+    }
+
+    .editCommentTextarea,
+    .addComment textarea {
+        height: 60px;
+    }
+
+    .commentControls {
+        top: 5px;
+        right: 5px;
+    }
+
+    .commentControls button {
+        font-size: 0.8rem;
+    }
+
+    .editButton {
+        font-size: 0.9rem;
+    }
+
+    .editTitleInput,
+    .editDescriptionTextarea {
+        font-size: 1.1rem;
+    }
+
+    .savePostButton,
+    .cancelPostButton {
+        font-size: 0.9rem;
+        padding: 0.4rem 0.7rem;
+    }
+}
