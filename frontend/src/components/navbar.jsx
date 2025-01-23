@@ -23,6 +23,21 @@ const NavBar = () => {
       ?.split('=')[1];
   };
 
+  useEffect(() => {
+    const fetchCsrfToken = async () => {
+      try {
+        const response = await axios.get('/api/csrf-token', { withCredentials: true });
+        const token = response.data.csrfToken;
+        document.cookie = `XSRF-TOKEN=${token}; path=/`;
+      } catch (error) {
+        console.error('Failed to fetch CSRF token:', error);
+      }
+    };
+  
+    fetchCsrfToken();
+    verifySession(); // Your existing session verification logic
+  }, [verifySession]);
+
   const handleSignUpSubmit = async (e) => {
     e.preventDefault();
     setFormError(null);
