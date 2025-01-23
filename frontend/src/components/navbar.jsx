@@ -83,8 +83,8 @@ const NavBar = () => {
     setFormError(null);
 
     const demoData = {
-      username: 'testuser',
-      password: 'password',
+      username: 'user1',
+      password: 'password123',
     };
 
     try {
