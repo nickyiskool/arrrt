@@ -51,7 +51,7 @@ const csrfProtection = csrf({
 
 app.use('/api/comments', csrfProtection, commentsRoutes);
 app.use('/api/posts', csrfProtection, postsRoutes);
-app.user('/api/users', csrfProtection, usersRoutes)
+app.use('/api/users', csrfProtection, usersRoutes)
 
 app.use(express.static(path.join(__dirname, 'frontend/dist')));
 
