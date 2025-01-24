@@ -54,6 +54,7 @@ const ProfilePage = () => {
                     className="postImage"
                   />
                   <div className="postOverlay">
+                    <p className="postTitle">{post.title}</p>
                     <p className="postDescription">{post.description}</p>
                   </div>
                 </div>

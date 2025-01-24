@@ -54,7 +54,8 @@ const PostList = () => {
                     className="postImage"
                   />
                   <div className="postOverlay"> 
-                    <p className="postAuthor">Author: {post.user?.username || post.userId}</p>
+                    <p className="postListTitle">{post.title}</p>
+                    <p className="postAuthor">{post.user?.username || post.userId}</p>
                     <p className="postDescription">{post.description}</p>
                   </div>
                 </div>

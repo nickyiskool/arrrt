@@ -145,15 +145,14 @@ const NavBar = () => {
     e.preventDefault();
     setFormError(null);
 
-    const formData = new FormData(e.target);
     const data = {
-      displayName: formData.get('displayName'),
-      bio: formData.get('bio'),
+      displayName,
+      bio,
     };
 
     try {
       const csrfToken = getCsrfToken();
-
+      console.log('Data sent to API:', data);
       const response = await axios.put(`/api/users/${user.username}`, data, {
         headers: {
           'Content-Type': 'application/json',

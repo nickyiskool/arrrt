@@ -299,8 +299,8 @@ const PostPage = () => {
           )}
         </div>
 
-        <h3 className="postAuthor">by {post.user.displayName}</h3>
-        <p className="username">@{post.user.username}</p>
+        <h3 className="postAuthor">{post.user.displayName}</h3>
+        <p className="username">{post.user.username}</p>
         <p className="date">
           Uploaded on {new Date(post.createdAt).toLocaleDateString()}
           {post.updatedAt && (
@@ -355,7 +355,7 @@ const PostPage = () => {
 
                   <>
                     <p className="commentAuthor">
-                      {comment.user.displayName} (@{comment.user.username})
+                      {comment.user.displayName} ({comment.user.username})
                     </p>
                     <p className="commentContent">{comment.content}</p>
                   </>
