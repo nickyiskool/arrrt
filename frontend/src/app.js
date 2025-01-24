@@ -5,7 +5,21 @@ import NavBar from './components/navbar';
 import PostPage from './components/PostPage';
 import PostList from './components/PostList';
 import ProfilePage from './components/ProfilePage';
+import axios from 'axios';
 
+// Configure Axios Defaults
+axios.defaults.withCredentials = true; // Include cookies with every request
+axios.interceptors.request.use(config => {
+  const csrfToken = document.cookie
+    .split('; ')
+    .find(row => row.startsWith('XSRF-TOKEN='))
+    ?.split('=')[1];
+  
+  if (csrfToken) {
+    config.headers['X-XSRF-TOKEN'] = csrfToken;
+  }
+  return config;
+});
 
 const App = () => {
   useEffect(() => {
