@@ -151,6 +151,30 @@ const PostPage = () => {
     }
   };
 
+  const deletePost = async (commentId) => {
+    if (!window.confirm('Are you sure you want to delete this post?')) return;
+
+    try {
+      const csrfToken = document.cookie
+        .split('; ')
+        .find((row) => row.startsWith('XSRF-TOKEN='))
+        ?.split('=')[1];
+
+      await axios.delete(`/api/posts/${postId}`, {
+        headers: {
+          'x-csrf-token': csrfToken,
+        },
+        withCredentials: true,
+      });
+
+      const updatedComments = post.comments.filter((comment) => comment.id !== commentId);
+      setPost({ ...post, comments: updatedComments });
+    } catch (err) {
+      console.error('Error deleting comment:', err.response?.data?.error || err.message);
+      alert(err.response?.data?.error || 'Failed to delete comment.');
+    }
+  };
+
   const startEditingTitle = () => {
     setEditTitle(post.title);
     setIsEditingTitle(true);
@@ -266,6 +290,11 @@ const PostPage = () => {
           {isPostAuthor && (
             <button onClick={isEditingDescription ? savePostEdit : startEditingDescription} className="editButton">
               {isEditingDescription ? 'Save' : 'Edit'}
+            </button>
+          )}
+          {isPostAuthor && (
+            <button  onClick={deletePost} classame="deletePostButton">
+                Delete
             </button>
           )}
         </div>
