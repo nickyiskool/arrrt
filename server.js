@@ -6,7 +6,6 @@ const { Sequelize } = require('sequelize');
 const cors = require('cors');
 require('dotenv').config();
 
-
 const { router: usersRoutes } = require('./routes/users');
 const commentsRoutes = require('./routes/comments');
 const postsRoutes = require('./routes/posts');
@@ -14,13 +13,13 @@ const postsRoutes = require('./routes/posts');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-
+// Initialize Sequelize
 const sequelize = new Sequelize({
   dialect: 'sqlite',
   storage: './database.sqlite',
 });
 
-
+// Authenticate DB connection
 (async () => {
   try {
     await sequelize.authenticate();
@@ -30,35 +29,49 @@ const sequelize = new Sequelize({
   }
 })();
 
+// Middleware
 app.use(cookieParser());
 app.use(express.json());
 
+// CORS Configuration
 app.use(cors({
-  origin: 'http://localhost:3000', 
-  credentials: true,               
+  origin: process.env.FRONTEND_URL || 'http://localhost:3000',
+  credentials: true,
 }));
 
-
-app.use('/api/users', usersRoutes);
-
+// CSRF Protection Middleware
 const csrfProtection = csrf({
   cookie: {
-    httpOnly: true,
-    secure: process.env.NODE_ENV === 'production', // true in production
-    sameSite: 'lax',
+    httpOnly: false, // Allow the frontend to read the cookie
+    secure: process.env.NODE_ENV === 'production', // Use secure cookies in production
+    sameSite: process.env.NODE_ENV === 'production' ? 'strict' : 'lax',
   },
 });
 
+// CSRF Token Route
+app.get('/api/csrf-token', csrfProtection, (req, res) => {
+  res.cookie('XSRF-TOKEN', req.csrfToken(), {
+    httpOnly: false, // Allow the frontend to read the cookie
+    secure: process.env.NODE_ENV === 'production',
+    sameSite: process.env.NODE_ENV === 'production' ? 'strict' : 'lax',
+  });
+  res.json({ csrfToken: req.csrfToken() });
+});
+
+// API Routes
 app.use('/api/comments', csrfProtection, commentsRoutes);
 app.use('/api/posts', csrfProtection, postsRoutes);
-app.use('/api/users', csrfProtection, usersRoutes)
+app.use('/api/users', csrfProtection, usersRoutes);
 
+// Serve React Frontend
 app.use(express.static(path.join(__dirname, 'frontend/dist')));
 
+// Wildcard Route for React SPA
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'frontend/dist', 'index.html'));
 });
 
+// Global Error Handler
 app.use((err, req, res, next) => {
   if (err.code === 'EBADCSRFTOKEN') {
     console.error('Invalid CSRF token:', err);
@@ -70,6 +83,7 @@ app.use((err, req, res, next) => {
   });
 });
 
+// Start Server
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });

@@ -1,20 +1,20 @@
 // frontend/app.js
 import React, { useEffect, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import axios from 'axios'; // Import Axios
 import NavBar from './components/navbar';
 import PostPage from './components/PostPage';
 import PostList from './components/PostList';
 import ProfilePage from './components/ProfilePage';
-import axios from 'axios';
 
 // Configure Axios Defaults
 axios.defaults.withCredentials = true; // Include cookies with every request
-axios.interceptors.request.use(config => {
+axios.interceptors.request.use((config) => {
   const csrfToken = document.cookie
     .split('; ')
-    .find(row => row.startsWith('XSRF-TOKEN='))
+    .find((row) => row.startsWith('XSRF-TOKEN='))
     ?.split('=')[1];
-  
+
   if (csrfToken) {
     config.headers['X-XSRF-TOKEN'] = csrfToken;
   }
@@ -23,20 +23,17 @@ axios.interceptors.request.use(config => {
 
 const App = () => {
   useEffect(() => {
-    // Initial request to trigger CSRF cookie set by the server
-    const fetchInitialData = async () => {
+    // Fetch CSRF Token on App Load
+    const fetchCsrfToken = async () => {
       try {
-        const response = await fetch('/api/posts', {
-          method: 'GET',
-          credentials: 'include', // Include cookies
-        });
-        console.log('Initial request successful:', response.data);
+        const response = await axios.get('/api/csrf-token'); // Fetch token
+        console.log('CSRF token fetched:', response.data.csrfToken);
       } catch (error) {
-        console.error('Initial request failed:', error.message);
+        console.error('Failed to fetch CSRF token:', error.message);
       }
     };
 
-    fetchInitialData();
+    fetchCsrfToken(); // Call fetch token function on mount
   }, []);
 
   return (
